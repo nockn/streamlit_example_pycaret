@@ -188,15 +188,19 @@ def create_model_sequence(data):
     else:  # no select setup options
         pass  # DO NOTHING
 
-    # return model
 
+def visualize_model_sequence(model):
+    """
+    Visualize the model.
 
-def plot_model_sequence(model):
+    Args: model
+    Returns: none
+    """
     st.markdown("---")
     st.subheader("Plot model")
+
     with st.form("plot_model"):
         plot_model_mode = st.selectbox("plot model", constant.PLOT_MODE.keys())
-
         st.form_submit_button("done")
 
     if plot_model_mode != constant.NONE_STR:
@@ -206,13 +210,27 @@ def plot_model_sequence(model):
 
 
 def predict_sequence(model):
+    """
+    Make predictions with models
+
+    Args: model
+    Returns: none
+    """
     st.markdown("---")
     st.subheader("Predict")
+
     predictions = predict_model(model)
     st.write(predictions)
 
 
 def init_session_state():
+    """
+    Initialize session_state variables
+
+    Args: none
+    Returns: none
+    """
+
     try:
         _ = st.session_state.done_pycaret
     except:
@@ -225,12 +243,11 @@ def init_session_state():
 
 
 def app():
-
-    #Setting Streamlit
-    st.set_page_config(page_title="PyCaret Demo",layout="wide")
+    # Setting Streamlit
+    st.set_page_config(page_title="PyCaret Demo", layout="wide")
 
     init_session_state()
-ß
+
     # load dateset
     boston_data = load_data()
     st.subheader("Datasets")
@@ -240,7 +257,9 @@ def app():
     create_model_sequence(boston_data)
 
     if st.session_state.model is not None:
-        plot_model_sequence(st.session_state.model)
+        # plot model
+        visualize_model_sequence(st.session_state.model)
+        # predict
         predict_sequence(st.session_state.model)
     else:
         pass  # DO NOTHING
