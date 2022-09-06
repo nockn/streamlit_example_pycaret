@@ -1,7 +1,7 @@
 # coding: UTF-8
 import pandas as pd
 import streamlit as st
-from pycaret.datasets import get_data
+from sklearn.datasets import fetch_california_housing
 from pycaret.regression import *
 
 import constant
@@ -15,7 +15,10 @@ def load_data():
     Args: none
     Return: pd.DataFrame
     """
-    return pd.DataFrame(get_data("boston"))
+    housing = fetch_california_housing(as_frame=True)
+    return pd.concat(
+        [pd.DataFrame(housing.data, columns=(housing.feature_names)), pd.Series(data=housing.target)], axis=1
+    )
 
 
 def search_data_types(setup_result, list_columns: list, target: str):
@@ -243,18 +246,16 @@ def init_session_state():
 
 
 def app():
-    # Setting Streamlit
-    st.set_page_config(page_title="PyCaret Demo", layout="wide")
 
     init_session_state()
 
     # load dateset
-    boston_data = load_data()
+    california_data = load_data()
     st.subheader("Datasets")
-    st.write(boston_data)
+    st.write(california_data)
 
     # create model
-    create_model_sequence(boston_data)
+    create_model_sequence(california_data)
 
     if st.session_state.model is not None:
         # plot model
@@ -267,5 +268,6 @@ def app():
 
 if __name__ == "__main__":
     # Setting Streamlit
+    st.set_page_config(page_title="PyCaret Demo", layout="wide")
 
     app()
