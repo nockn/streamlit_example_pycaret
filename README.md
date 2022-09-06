@@ -1,5 +1,5 @@
 # How to run PyCaret on Streamlit
-[[日本語]](/docs/README_JP.md)
+[[日本語]](/docs/README_JP.md)  
 This is a demo of PyCaret running on Streamlit.
 
 ![demo.gif](/docs/demo.gif)
@@ -17,8 +17,8 @@ Streamlit app is being prepared for deployment.
 ## Setting on your app
 Set the arguments of the function as follows:
 ### setup
-> html=False
-> silent=True
+> html=False  
+> silent=True  
 
 ### plot_model
 >display_format="streamlit"
