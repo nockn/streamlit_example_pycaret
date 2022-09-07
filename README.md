@@ -9,7 +9,7 @@ This is a demo of PyCaret running on Streamlit.
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/nockn/streamlit_example_pycaret/main)
 or
 -->
-> pip install streamlit>=1.5.1 pycaret>=2.3.5 scikit-learn>=1.0.2
+> pip install streamlit>=1.5.1 pycaret>=2.3.5 scikit-learn>=1.0.2  
 > streamlit run streamlit_app.py
 
 Streamlit app is being prepared for deployment.
